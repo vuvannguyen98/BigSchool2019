@@ -10,16 +10,16 @@ namespace BigSchool.ViewModels
 {
     public class CourseViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Place không được bỏ trống")]
         public string Place { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Place không được bỏ trống")]
         public string Date  { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Place không được bỏ trống")]
         public string Time  { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Place không được bỏ trống")]
         public byte Category { get; set; }
         public IEnumerable<Category> Categories { get; set; }
         public DateTime GetDateTime ()
