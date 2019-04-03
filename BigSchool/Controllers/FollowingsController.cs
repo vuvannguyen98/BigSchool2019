@@ -19,7 +19,7 @@ namespace BigSchool.Controllers
             _dbContext = new ApplicationDbContext();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public IHttpActionResult Follow(FollowingDto followingDto)
         {
             var userId = User.Identity.GetUserId();
@@ -33,6 +33,6 @@ namespace BigSchool.Controllers
             _dbContext.Followings.Add(folowing);
             _dbContext.SaveChanges();
             return Ok();
-        }
+        }*/
     }
 }
