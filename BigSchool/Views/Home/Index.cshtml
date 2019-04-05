@@ -1,47 +1,47 @@
-﻿@model IEnumerable<BigSchool.Models.Course>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
-<style>
-    #customers {
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-        #customers td, #customers th {
-            border: 1px solid #ddd;
-            padding: 8px;
+@model IEnumerable<BigSchool.Models.Course>
+    <style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
         }
 
-        #customers tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
 
-        #customers tr:hover {
-            background-color: #ddd;
-        }
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
 
-        #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #4CAF50;
-            color: white;
-        }
-</style>
-<br />
-<table id="customers">
-    <tr>
-        <th>Ngày</th>
-        <th>Tháng</th>
-        <th>Địa điểm</th>
-        <th>Tên giảng viên</th>
-        <th>Loại</th>
-    </tr>
+            #customers tr:hover {
+                background-color: #ddd;
+            }
 
-    @foreach (var course in Model)
-    {
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+    </style>
+    <br />
+    <table id="customers">
+        <tr>
+            <th>Ngày</th>
+            <th>Tháng</th>
+            <th>Địa điểm</th>
+            <th>Tên giảng viên</th>
+            <th>Loại</th>
+        </tr>
+
+        @foreach (var course in Model)
+        {
         <tr>
             <td>@course.DateTime.ToString("dd")</td>
             <td>@course.DateTime.ToString("MM")</td>
@@ -49,4 +49,6 @@
             <td>@course.Lectuer.Name</td>
             <td>@course.Category.Name</td>
         </tr>
-    }
+        }
+
+    </table>
