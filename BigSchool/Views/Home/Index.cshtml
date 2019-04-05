@@ -2,30 +2,51 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<div class="row">
-    <p>A</p>
-    <ul class="coures">
-        @foreach(var course in Model)
-        {
-            <li>
-                <div class="date">
-                    <div class="month">
-                        @course.DateTime.ToString("MM")
-                    </div>
-                    <div class="day">
-                        @course.DateTime.ToString("dd")
-                    </div>
-                </div>
-                <div class="details">
-                    <span class="lectuer">
-                        @course.Lectuer.Name
-                    </span>
-                    <span class="category">
-                        @course.Category.Name
-                    </span>
-                </div>
-                @course.DateTime - @course.Lectuer.Name
-            </li>
+<style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
         }
-    </ul>
-</div>
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+<br />
+<table id="customers">
+    <tr>
+        <th>Ngày</th>
+        <th>Tháng</th>
+        <th>Địa điểm</th>
+        <th>Tên giảng viên</th>
+        <th>Loại</th>
+    </tr>
+
+    @foreach (var course in Model)
+    {
+        <tr>
+            <td>@course.DateTime.ToString("dd")</td>
+            <td>@course.DateTime.ToString("MM")</td>
+            <td>@course.Place</td>
+            <td>@course.Lectuer.Name</td>
+            <td>@course.Category.Name</td>
+        </tr>
+    }
