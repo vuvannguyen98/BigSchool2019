@@ -35,8 +35,9 @@
         <tr>
             <th>Ngày</th>
             <th>Tháng</th>
+            <th>Năm</th>
+            <th>Thời gian</th>
             <th>Địa điểm</th>
-            <th>Tên giảng viên</th>
             <th>Loại</th>
         </tr>
 
@@ -45,8 +46,10 @@
         <tr>
             <td>@course.DateTime.ToString("dd")</td>
             <td>@course.DateTime.ToString("MM")</td>
+            <td>@course.DateTime.ToString("yyyy")</td>
+            <td>@course.DateTime.ToString("HH:mm")</td>
             <td>@course.Place</td>
-            <td>@course.Lectuer.Name</td>
+           
             <td>@course.Category.Name</td>
         </tr>
         }

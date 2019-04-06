@@ -14,7 +14,7 @@ namespace BigSchool.ViewModels
         public string Place { get; set; }
             
         [Required(ErrorMessage = "Ngày -- không được để trống")]
-        [FutureDate(ErrorMessage = "Định dạng sai  (dd/MM/YYYY)")] 
+        [FutureDate(ErrorMessage = "Ngày tháng năm phải lớn hơn ngày tháng năm ở hiện tại")] 
         public string Date  { get; set; }
 
         [Required(ErrorMessage = "Thời gian -- không được để trống")]
