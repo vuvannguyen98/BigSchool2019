@@ -55,6 +55,7 @@
         <th>Loại</th>
         <th>Tên giảng viên</th>
         <th>Đăng kí</th>
+        <th>Theo dõi</th>
     </tr>
 
     @foreach (var course in Model)
@@ -68,23 +69,11 @@
             <td>@course.Category.Name</td>
             <td>@course.Category.Id</td>
             <td ><button data-course-id="@course.Id" id="lolo" class="btn btn-default btn-sm js-toggle-attendance"> Going? </button></td>
-            
+            <td><button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId" > Follow</button></td>
         </tr>
     }
-
-</table>
-<div class="row">
-    <ul>
-        @foreach(var course in Model)
-        {
-        <li>
-            @course.DateTime - @*@course.Lectuer.Name*@
-        </li>
-        }
-    </ul>
-</div>
-@section scripts
-{
+    @section scripts
+    {
     <script>
         $(document).ready(function () {
             $(".js-toggle-attendance").click(function (e) {
@@ -100,6 +89,28 @@
                         alert("Something failed! ");
                     });
             });
+            $(".js-toggle-follow").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                    .done(function () {
+                        button.text("Following");
+                    })
+                    .fail(function () {
+                        alert("Something failed");
+                    });
+            });
         )};
     </script>
-}
+    }
+</table>
+<div class="row">
+    <ul>
+        @foreach(var course in Model)
+        {
+        <li>
+            @course.DateTime - @*@course.Lectuer.Name*@
+        </li>
+        }
+    </ul>
+</div>
+
