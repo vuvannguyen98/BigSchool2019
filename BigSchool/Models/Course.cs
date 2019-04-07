@@ -10,7 +10,7 @@ namespace BigSchool.Models
 {
     public class Course
     {
-         public int Id { get; set; }
+        public int Id { get; set; }
 
         public ApplicationUser Lectuer { get; set; }
 
@@ -27,5 +27,6 @@ namespace BigSchool.Models
 
         [Required]
         public byte CategoryId { get; set; }
+        
     }
 }

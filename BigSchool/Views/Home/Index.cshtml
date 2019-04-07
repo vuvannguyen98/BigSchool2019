@@ -2,56 +2,104 @@
     ViewBag.Title = "Home Page";
 }
 @model IEnumerable<BigSchool.Models.Course>
-    <style>
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
+
+<style>
+    #lo{
+       text-align:center;
+    }
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #03EBF7;
+            padding: 8px;
         }
 
-            #customers td, #customers th {
-                border: 1px solid #ddd;
-                padding: 8px;
-            }
+        #customers tr:nth-child(even) {
+            background-color: #FDFDFD;
+        }
 
-            #customers tr:nth-child(even) {
-                background-color: #f2f2f2;
-            }
+        #customers tr:hover {
+            background-color: #FAF89B;
+        }
 
-            #customers tr:hover {
-                background-color: #ddd;
-            }
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #FC3CBF;
+            color: white;
+        }
+    #lolo {
+        background-color: #9A0CFF;
+    }
+    
+</style>
+<br />
+<div style="text-align:center;">
+    <h1>
+        DANH SÁCH CÁC KHÓA HỌC
+    </h1>
+</div>
+<table id="customers">
 
-            #customers th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: left;
-                background-color: #4CAF50;
-                color: white;
-            }
-    </style>
-    <br />
-    <table id="customers">
-        <tr>
-            <th>Ngày</th>
-            <th>Tháng</th>
-            <th>Năm</th>
-            <th>Thời gian</th>
-            <th>Địa điểm</th>
-            <th>Loại</th>
-        </tr>
+    <tr>
+        <th>Ngày</th>
+        <th>Tháng</th>
+        <th>Năm</th>
+        <th>Thời gian</th>
+        <th>Địa điểm</th>
+        <th>Loại</th>
+        <th>Tên giảng viên</th>
+        <th>Đăng kí</th>
+    </tr>
 
-        @foreach (var course in Model)
-        {
+    @foreach (var course in Model)
+    {
         <tr>
             <td>@course.DateTime.ToString("dd")</td>
             <td>@course.DateTime.ToString("MM")</td>
             <td>@course.DateTime.ToString("yyyy")</td>
             <td>@course.DateTime.ToString("HH:mm")</td>
             <td>@course.Place</td>
-           
             <td>@course.Category.Name</td>
+            <td>@course.Category.Id</td>
+            <td ><button data-course-id="@course.Id" id="lolo" class="btn btn-default btn-sm js-toggle-attendance"> Going? </button></td>
+            
         </tr>
-        }
+    }
 
-    </table>
+</table>
+<div class="row">
+    <ul>
+        @foreach(var course in Model)
+        {
+        <li>
+            @course.DateTime - @*@course.Lectuer.Name*@
+        </li>
+        }
+    </ul>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-attendance").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/attendances", { courseId: button.attr("data-course-id") })
+                    .done(function () {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Going");
+                    })
+                    .fail(function () {
+                        alert("Something failed! ");
+                    });
+            });
+        )};
+    </script>
+}
